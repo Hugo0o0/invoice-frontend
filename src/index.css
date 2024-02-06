@@ -7,34 +7,54 @@
   :root {
     --color-primary: 252 94% 67%;
     --color-secondary: 252 100% 73%;
-    --color-background: 233 31% 17%;
-    --color-surface: 233 30% 21%;
-    --color-surface-light: 231 73% 93%;
-    --color-text: 231 20% 61%;
-    --color-text-light: 231 37% 63%;
-    --color-text-dark: 228 29, 7%;
+    --color-dark: 233 31% 17%;
+    --color-ebony-clay: 233 30% 21%;
+    --color-link-water: 231 73% 93%;
+    --color-regent-gray: 231 20% 61%;
+    --color-wild-blue: 231 37% 63%;
+    --color-cinder: 228 29 7%;
     --color-danger: 0 80% 63%;
-    --color-accent: 252 100% 73%;
-    --color-whitish: 240 27% 98%;
-    --color-blackish: 233 30% 11%;
+    --color-danger-light: 0 100% 80%;
+    --color-white-lilac: 240 27% 98%;
+    --color-mirage: 233 30% 11%;
     --color-white: 0 0% 100%;
     --color-black: 0 0% 0%;
+    --color-alabaster: 231 67% 99%;
 
-    --body-bg: var(--color-whitish);
+    --body-bg: var(--color-white-lilac);
     --item-bg: var(--color-white);
     --text: var(--color-white);
+
+    --btn-secondary-bg: 240 60% 99%;
+    --btn-secondary-text: var(--color-wild-blue);
+    --btn-secondary-hover: 231 73% 93%;
+    --btn-dark-bg: 231 20% 27%;
+    --btn-dark-text: var(--color-regent-gray);
+    --btn-dark-hover: var(--color-cinder);
   }
 
   html[data-theme="light"] {
-    --body-bg: var(--color-whitish);
+    --body-bg: var(--color-white-lilac);
     --item-bg: var(--color-white);
     --text: var(--color-black);
+    --btn-secondary-bg: 240 60% 99%;
+    --btn-secondary-text: var(--color-wild-blue);
+    --btn-secondary-hover: 231 73% 93%;
+    --btn-dark-bg: 231 20% 27%;
+    --btn-dark-text: var(--color-link-water);
+    --btn-dark-hover: var(--color-cinder);
   }
 
   html[data-theme="dark"] {
-    --body-bg: var(--color-blackish);
-    --item-bg: var(--color-background);
+    --body-bg: var(--color-mirage);
+    --item-bg: var(--color-dark);
     --text: var(--color-white);
+    --btn-secondary-bg: var(--color-ebony-clay);
+    --btn-secondary-text: var(--color-link-water);
+    --btn-secondary-hover: none;
+    --btn-dark-bg: 231 20% 27%;
+    --btn-dark-text: var(--color-regent-gray);
+    --btn-dark-hover: var(--color-dark);
   }
 
   html {
