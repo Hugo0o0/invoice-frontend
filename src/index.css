@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 252 94% 67%;
+    --color-secondary: 252 100% 73%;
+    --color-background: 233 31% 17%;
+    --color-surface: 233 30% 21%;
+    --color-surface-light: 231 73% 93%;
+    --color-text: 231 20% 61%;
+    --color-text-light: 231 37% 63%;
+    --color-text-dark: 228 29, 7%;
+    --color-danger: 0 80% 63%;
+    --color-accent: 252 100% 73%;
+    --color-whitish: 240 27% 98%;
+    --color-blackish: 233 30% 11%;
+    --color-white: 0 0% 100%;
+    --color-black: 0 0% 0%;
+
+    --body-bg: var(--color-whitish);
+    --item-bg: var(--color-white);
+    --text: var(--color-white);
+  }
+
+  html[data-theme="light"] {
+    --body-bg: var(--color-whitish);
+    --item-bg: var(--color-white);
+    --text: var(--color-black);
+  }
+
+  html[data-theme="dark"] {
+    --body-bg: var(--color-blackish);
+    --item-bg: var(--color-background);
+    --text: var(--color-white);
+  }
+
+  html {
+    @apply text-[62.5%];
+    @apply font-medium !important;
+  }
+
+  body {
+    @apply font-sans-serif;
+    @apply bg-body;
+    @apply text-default;
+  }
+}
