@@ -11,6 +11,7 @@ export default {
         danger: "hsl(var(--color-danger) / <alpha-value>)",
         "danger-light": "hsl(var(--color-danger-light) / <alpha-value>)",
         "wild-blue": "hsl(var(--color-wild-blue) / <alpha-value>)",
+        cinder: "hsl(var(--color-cinder) / <alpha-value>)",
       },
       textColor: {
         default: "hsl(var(--text) / <alpha-value>)",
@@ -44,7 +45,7 @@ export default {
         lg: "3.6rem",
         md: "2.4rem",
         sm: "1.5rem",
-        body: "1.3rem",
+        xs: "1.3rem",
       },
 
       boxShadow: {
@@ -74,6 +75,10 @@ export default {
       animation: {
         ripple: "1.2s ease-in-out 0s infinite normal none running ripple",
       },
+    },
+    borderColor: {
+      input: "hsl(var(--input-border) / <alpha-value>)",
+      "input-focus": "hsl(var(--input-border-focus) / <alpha-value>)",
     },
   },
   plugins: [],

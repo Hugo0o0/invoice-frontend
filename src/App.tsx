@@ -1,11 +1,7 @@
-import InvoiceStatus from "@/components/InvoiceStatus/InvoiceStatus";
+import PaymentTermDropdown from "./components/PaymentTermsDropdown/PaymentTermDropdown";
 
 const App = () => {
-  return (
-    <div>
-      <InvoiceStatus status="pending" />
-    </div>
-  );
+  return <PaymentTermDropdown />;
 };
 
 export default App;
