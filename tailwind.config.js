@@ -57,6 +57,7 @@ export default {
           "hsl(var(--btn-secondary-hover) / <alpha-value>)",
         "btn-dark": "hsl(var(--btn-dark-bg) / <alpha-value>)",
         "btn-dark-hover": "hsl(var(--btn-dark-hover) / <alpha-value>)",
+        sidebar: "hsl(var(--sidebar-bg) / <alpha-value>)",
       },
 
       keyframes: {

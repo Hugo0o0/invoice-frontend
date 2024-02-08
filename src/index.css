@@ -33,6 +33,7 @@
     --btn-dark-hover: var(--color-cinder);
     --input-border: var(--color-link-water);
     --input-border-focus: var(--color-primary);
+    --sidebar-bg: 231 20% 27%;
   }
 
   html[data-theme="light"] {
@@ -47,6 +48,7 @@
     --btn-dark-hover: var(--color-cinder);
     --input-border: var(--color-link-water);
     --input-border-focus: var(--color-primary);
+    --sidebar-bg: 231 20% 27%;
   }
 
   html[data-theme="dark"] {
@@ -61,6 +63,7 @@
     --btn-dark-hover: var(--color-dark);
     --input-border: var(--color-ebony-clay);
     --input-border-focus: var(--color-ebony-clay);
+    --sidebar-bg: var(--color-dark);
   }
 
   html {
@@ -72,5 +75,9 @@
     @apply font-sans-serif;
     @apply bg-body;
     @apply text-default;
+  }
+
+  #root {
+    @apply min-h-screen;
   }
 }
