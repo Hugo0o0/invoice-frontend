@@ -9,7 +9,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/invoice/:id",
+    path: "/invoices/:id",
     element: <Invoice />,
   },
 ]);

@@ -10,7 +10,7 @@ const Ripple: FC<InvoiceStatusProps> = ({ status }) => {
     "bg-[#33D69F]": status === "paid",
     "bg-[#FF8F00] after:w-full after:h-full after:-z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:border after:border-[#FF8F00] after:animate-ripple":
       status === "pending",
-    "bg-[#373B53]": status === "draft",
+    "bg-sidebar": status === "draft",
   });
 
   return <div className={className}></div>;

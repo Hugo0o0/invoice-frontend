@@ -12,11 +12,15 @@ export default {
         "danger-light": "hsl(var(--color-danger-light) / <alpha-value>)",
         "wild-blue": "hsl(var(--color-wild-blue) / <alpha-value>)",
         cinder: "hsl(var(--color-cinder) / <alpha-value>)",
+        "regent-gray": "hsl(var(--color-regent-gray) / <alpha-value>)",
+        "link-water": "hsl(var(--color-link-water) / <alpha-value>)",
       },
       textColor: {
         default: "hsl(var(--text) / <alpha-value>)",
         "btn-secondary": "hsl(var(--btn-secondary-text) / <alpha-value>)",
         "btn-dark": "hsl(var(--btn-dark-text) / <alpha-value>)",
+        draft: "hsl(var(--draft-text) / <alpha-value>)",
+        detail: "hsl(var(--detail) / <alpha-value>)",
       },
 
       fontFamily: {
@@ -49,7 +53,7 @@ export default {
       },
 
       boxShadow: {
-        default: "0 10px 10px -10px #48549F",
+        default: "0 10px 10px -10px rgba(72,84,159,0.1)",
       },
       backgroundColor: {
         "btn-secondary": "hsl(var(--btn-secondary-bg) / <alpha-value>)",
@@ -58,6 +62,7 @@ export default {
         "btn-dark": "hsl(var(--btn-dark-bg) / <alpha-value>)",
         "btn-dark-hover": "hsl(var(--btn-dark-hover) / <alpha-value>)",
         sidebar: "hsl(var(--sidebar-bg) / <alpha-value>)",
+        draft: "var(--draft-bg)",
       },
 
       keyframes: {

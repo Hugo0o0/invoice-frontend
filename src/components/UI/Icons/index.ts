@@ -3,5 +3,8 @@ import Calendar from "./Calendar";
 import Logo from "./Logo";
 import Sun from "./Sun";
 import Moon from "./Moon";
+import Plus from "./Plus";
+import ArrowRight from "./ArrowRight";
+import ArrowLeft from "./ArrowLeft";
 
-export { ArrowDown, Calendar, Logo, Sun, Moon };
+export { ArrowDown, Calendar, Logo, Sun, Moon, Plus, ArrowRight, ArrowLeft };

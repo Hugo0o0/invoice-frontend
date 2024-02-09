@@ -9,7 +9,7 @@ const Sidebar = () => {
       <div className="w-full h-full md:h-auto items-center justify-end flex md:flex-col gap-10  md:justify-center">
         <ThemeSwitcher />
 
-        <div className="md:border-t-[1px] border-l-[1px] h-full border-[#494E6E] md:border-[#494E6E] px-10 py-10 flex items-center justify-center  md:w-full">
+        <div className="md:border-t-[1px] md:border-l-0 border-l-[1px] h-full border-[#494E6E] md:border-[#494E6E] px-10 py-10 flex items-center justify-center  md:w-full">
           <Avatar alt="avatar" src="src/assets/avatar.jpg" />
         </div>
       </div>

@@ -11,9 +11,9 @@ const InvoiceStatus: FC<InvoiceStatusProps> = ({ status }) => {
   const className = classNames(
     "w-[10.4rem] h-[4rem] rounded-[6px] text-sm font-bold flex items-center justify-center gap-[10px]",
     {
-      "bg-[#EDF6F6] text-[#33D69F]": status === "paid",
-      "bg-[#FFF9F0] text-[#FF8F00]": status === "pending",
-      "bg-[#F4F4F5] text-[#373B53]": status === "draft",
+      "bg-[#33d69f0f] text-[#33D69F]": status === "paid",
+      "bg-[#ff8f000f] text-[#FF8F00]": status === "pending",
+      "bg-draft text-draft": status === "draft",
     }
   );
   return (

@@ -13,7 +13,7 @@ const classes: Classes = {
 };
 
 const defaults =
-  "text-white capitalize text-sm font-bold rounded-[24px] py-4 px-10 transition-all";
+  "text-white capitalize text-sm font-bold rounded-full py-3 px-7 transition-all";
 
 export default {
   classes,

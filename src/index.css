@@ -34,6 +34,9 @@
     --input-border: var(--color-link-water);
     --input-border-focus: var(--color-primary);
     --sidebar-bg: 231 20% 27%;
+    --draft-bg: #373b530f;
+    --draft-text: 231 20% 27%;
+    --detail: var(--color-wild-blue);
   }
 
   html[data-theme="light"] {
@@ -49,6 +52,9 @@
     --input-border: var(--color-link-water);
     --input-border-focus: var(--color-primary);
     --sidebar-bg: 231 20% 27%;
+    --draft-bg: #373b530f;
+    --draft-text: 231 20% 27%;
+    --detail: var(--color-wild-blue);
   }
 
   html[data-theme="dark"] {
@@ -64,6 +70,9 @@
     --input-border: var(--color-ebony-clay);
     --input-border-focus: var(--color-ebony-clay);
     --sidebar-bg: var(--color-dark);
+    --draft-bg: #dfe3fa0f;
+    --draft-text: var(--color-link-water);
+    --detail: var(--color-link-water);
   }
 
   html {

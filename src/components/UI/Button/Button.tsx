@@ -9,8 +9,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
 }
 
-const Button: FC<ButtonProps> = ({ children, variant }) => {
-  const className = classNames(classes.defaults, classes.classes[variant!]);
+const Button: FC<ButtonProps> = ({ children, variant, ...props }) => {
+  const className = classNames(
+    classes.defaults,
+    classes.classes[variant!],
+    props.className
+  );
   return <button className={className}>{children}</button>;
 };
 

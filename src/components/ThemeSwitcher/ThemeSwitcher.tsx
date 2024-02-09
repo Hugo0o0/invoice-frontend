@@ -1,6 +1,5 @@
 import useTheme from "@/utils/hooks/useTheme";
-import { Moon, Sun } from "../UI/Icons";
-import { Slide } from "../UI";
+import { Moon, Sun } from "../UI";
 
 const ThemeSwitcher = () => {
   const { theme, toggle } = useTheme();
