@@ -31,3 +31,22 @@ export interface InvoiceItem {
   price: number;
   total: number;
 }
+
+export interface LoginUser {
+  email: string;
+  password: string;
+}
+
+export interface User {
+  name: string | null;
+  email: string | null;
+  token: {
+    jwt: string | null;
+  };
+}
+
+export interface SignupUser {
+  name: string;
+  email: string;
+  password: string;
+}

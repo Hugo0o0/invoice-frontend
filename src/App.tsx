@@ -1,16 +1,42 @@
 import { RouterProvider } from "react-router-dom";
 import router from "@/routes/router";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import AuthModal from "./components/Auth/AuthModal";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import useAuth from "./utils/hooks/useAuth";
 
 const App = () => {
+  const { user } = useAuth();
+
+  console.log(user);
+
   return (
     <main className="min-h-screen flex flex-col md:flex-row">
-      <Sidebar />
-      <div className="w-full flex justify-center">
-        <div className="lg:w-[73rem] w-[32.7rem] md:w-[67.2rem] mt-[5rem] md:mt-[8rem]">
-          <RouterProvider router={router} />
-        </div>
-      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {!user ? (
+        <AuthModal />
+      ) : (
+        <>
+          <Sidebar />
+          <div className="w-full flex justify-center">
+            <div className="lg:w-[73rem] w-[32.7rem] md:w-[67.2rem] mt-[5rem] md:mt-[8rem]">
+              <RouterProvider router={router} />
+            </div>
+          </div>
+        </>
+      )}
     </main>
   );
 };

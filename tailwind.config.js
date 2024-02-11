@@ -63,6 +63,8 @@ export default {
         "btn-dark-hover": "hsl(var(--btn-dark-hover) / <alpha-value>)",
         sidebar: "hsl(var(--sidebar-bg) / <alpha-value>)",
         draft: "var(--draft-bg)",
+        amount: "hsl(var(--amount) / <alpha-value>)",
+        modal: "rgba(0, 0, 0, 0.5)",
       },
 
       keyframes: {

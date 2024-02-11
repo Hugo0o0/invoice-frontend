@@ -11,7 +11,8 @@ import {
   ArrowLeft,
 } from "./Icons";
 import { FormInput } from "./FormInput";
-import { Slide } from "./Animations";
+import { Slide, Fade } from "./Animations";
+import Switch from "./Switch/Switch";
 
 export {
   Text,
@@ -27,4 +28,6 @@ export {
   Plus,
   ArrowRight,
   ArrowLeft,
+  Switch,
+  Fade,
 };

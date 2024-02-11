@@ -37,6 +37,7 @@
     --draft-bg: #373b530f;
     --draft-text: 231 20% 27%;
     --detail: var(--color-wild-blue);
+    --amount: 231 20% 27%;
   }
 
   html[data-theme="light"] {
@@ -55,6 +56,7 @@
     --draft-bg: #373b530f;
     --draft-text: 231 20% 27%;
     --detail: var(--color-wild-blue);
+    --amount: 231 20% 27%;
   }
 
   html[data-theme="dark"] {
@@ -73,6 +75,7 @@
     --draft-bg: #dfe3fa0f;
     --draft-text: var(--color-link-water);
     --detail: var(--color-link-water);
+    --amount: var(--color-cinder);
   }
 
   html {

@@ -15,7 +15,11 @@ const Button: FC<ButtonProps> = ({ children, variant, ...props }) => {
     classes.classes[variant!],
     props.className
   );
-  return <button className={className}>{children}</button>;
+  return (
+    <button {...props} className={className}>
+      {children}
+    </button>
+  );
 };
 
 Button.defaultProps = {

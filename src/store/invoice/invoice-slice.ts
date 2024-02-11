@@ -21,8 +21,16 @@ const invoiceSlice = createSlice({
         status.includes(invoice.status)
       );
     },
+
+    markAsPaid: (state, action) => {
+      const id = action.payload;
+      const invoice = state.invoices.find((invoice) => invoice.id === id);
+      if (invoice) {
+        invoice.status = "paid";
+      }
+    },
   },
 });
 
-export const { filterByStatus } = invoiceSlice.actions;
+export const { filterByStatus, markAsPaid } = invoiceSlice.actions;
 export default invoiceSlice.reducer;
