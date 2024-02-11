@@ -78,10 +78,19 @@ export default {
             opacity: "0",
           },
         },
+        rotate: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
       },
 
       animation: {
         ripple: "1.2s ease-in-out 0s infinite normal none running ripple",
+        rotate: "1s linear 0s infinite normal none running rotate",
       },
     },
     borderColor: {

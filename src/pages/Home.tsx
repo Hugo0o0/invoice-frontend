@@ -1,18 +1,23 @@
 import HomeInvoiceActions from "@/components/HomeInvoiceActions/HomeInvoiceActions";
 import InvoiceCard from "@/components/InvoiceCard/InvoiceCard";
-import useInvoice from "@/utils/hooks/useInvoices";
+import NoInvoice from "@/components/NoInvoice/NoInvoice";
+import useInvoices from "@/utils/hooks/useInvoices";
 
 const Home = () => {
-  const invoices = useInvoice();
-
+  const { data, isLoading } = useInvoices();
   return (
     <div className="flex flex-col gap-20">
       <HomeInvoiceActions />
-
       <div className="flex flex-col gap-5">
-        {invoices.map((invoice) => (
-          <InvoiceCard key={invoice.id} invoice={invoice} />
-        ))}
+        {data && data?.data.data.length === 0 && !isLoading && <NoInvoice />}
+        {data &&
+          data.data.data.map((invoice) => (
+            <InvoiceCard
+              loading={isLoading}
+              key={invoice.id}
+              invoice={invoice}
+            />
+          ))}
       </div>
     </div>
   );

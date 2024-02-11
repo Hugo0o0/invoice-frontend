@@ -9,8 +9,6 @@ import useAuth from "./utils/hooks/useAuth";
 const App = () => {
   const { user } = useAuth();
 
-  console.log(user);
-
   return (
     <main className="min-h-screen flex flex-col md:flex-row">
       <ToastContainer
@@ -25,9 +23,7 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
-      {!user ? (
-        <AuthModal />
-      ) : (
+      {user ? (
         <>
           <Sidebar />
           <div className="w-full flex justify-center">
@@ -36,6 +32,8 @@ const App = () => {
             </div>
           </div>
         </>
+      ) : (
+        <AuthModal />
       )}
     </main>
   );

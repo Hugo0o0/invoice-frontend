@@ -5,7 +5,7 @@ const Slide = ({
   show,
 }: {
   children: React.ReactNode;
-  show: boolean;
+  show?: boolean;
 }) => {
   return (
     <Transition

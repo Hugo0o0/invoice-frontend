@@ -1,8 +1,13 @@
-import { RootState } from "@/store/store";
-import { useSelector } from "react-redux";
+import { getInvoices } from "@/api/invoiceApi";
+import { useQuery } from "@tanstack/react-query";
 
 const useInvoices = () => {
-  return useSelector((state: RootState) => state.invoice.invoices);
+  const { data, isLoading } = useQuery({
+    queryKey: ["invoices"],
+    queryFn: getInvoices,
+  });
+
+  return { data, isLoading };
 };
 
 export default useInvoices;

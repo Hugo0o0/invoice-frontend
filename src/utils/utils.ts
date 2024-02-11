@@ -1,7 +1,8 @@
 import { AxiosError } from "axios";
+import { format } from "date-fns";
 import { toast } from "react-toastify";
 
-export const saveItemToLocalStorage = (key: string, value: any) => {
+export const saveItemToLocalStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
@@ -28,4 +29,8 @@ export const tryCatch = (callback: Function, loadingMessage?: string) => {
       return callback;
     }
   };
+};
+
+export const formatDate = (date: string) => {
+  return format(new Date(date), "dd MMM yyyy");
 };

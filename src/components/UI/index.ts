@@ -9,11 +9,12 @@ import {
   Plus,
   ArrowRight,
   ArrowLeft,
+  IllustrationEmpty,
 } from "./Icons";
 import { FormInput } from "./FormInput";
 import { Slide, Fade } from "./Animations";
 import Switch from "./Switch/Switch";
-
+import Skeleton from "./Skeleton/Skeleton";
 export {
   Text,
   Heading,
@@ -29,5 +30,7 @@ export {
   ArrowRight,
   ArrowLeft,
   Switch,
+  Skeleton,
   Fade,
+  IllustrationEmpty,
 };

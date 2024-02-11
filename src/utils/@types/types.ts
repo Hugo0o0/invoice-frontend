@@ -50,3 +50,8 @@ export interface SignupUser {
   email: string;
   password: string;
 }
+
+export interface AuthApiReturnType {
+  status: "success" | "error" | "fail";
+  data: User;
+}

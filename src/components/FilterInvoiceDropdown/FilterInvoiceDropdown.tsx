@@ -1,9 +1,7 @@
 import { Listbox } from "@headlessui/react";
 import { ArrowDown } from "../UI";
 import capitalize from "lodash.capitalize";
-import { useDispatch } from "react-redux";
-import { filterByStatus } from "@/store/invoice/invoice-slice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const status = [
   {
@@ -22,12 +20,6 @@ const status = [
 
 const FilterInvoiceDropdown = () => {
   const [filter, setFilter] = useState<string[]>(["draft", "pending", "paid"]);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(filterByStatus(filter));
-  }, [filter]);
 
   return (
     <Listbox as={"div"} className="relative">
@@ -55,15 +47,6 @@ const FilterInvoiceDropdown = () => {
               name={item.name}
               checked={filter.includes(item.name)}
               value={item.name}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setFilter((prev) => [...prev, e.target.value]);
-                }
-
-                if (!e.target.checked) {
-                  setFilter((prev) => prev.filter((i) => i !== e.target.value));
-                }
-              }}
             />
             <label className="text-sm font-bold" htmlFor="draft">
               {capitalize(item.name)}

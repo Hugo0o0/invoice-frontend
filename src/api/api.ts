@@ -6,23 +6,3 @@ export const api = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-export const loginApi = (user: any, signal: AbortSignal) => {
-  return api.post(
-    "login",
-    { user },
-    {
-      signal,
-    }
-  );
-};
-
-export const signupApi = (user: any, signal: AbortSignal) => {
-  return api.post(
-    "signup",
-    { user },
-    {
-      signal,
-    }
-  );
-};

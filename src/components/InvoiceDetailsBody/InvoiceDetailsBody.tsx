@@ -1,8 +1,16 @@
-import useInvoice from "@/utils/hooks/useInvoice";
 import InvoiceItems from "../InvoiceItems/InvoiceItems";
+import { Invoice } from "@/utils/@types/types";
+import { formatDate } from "@/utils/utils";
+import { Skeleton } from "../UI";
 
-const InvoiceDetailsBody = ({ id }: { id: string }) => {
-  const { invoice } = useInvoice(id);
+const InvoiceDetailsBody = ({
+  invoice,
+  loading,
+}: {
+  invoice: Invoice;
+  loading?: Boolean;
+}) => {
+  if (loading) return <Skeleton />;
 
   return (
     <div className="bg-item py-20 px-16 flex flex-col gap-5 shadow-default w-full rounded-[8px] ">
@@ -10,7 +18,9 @@ const InvoiceDetailsBody = ({ id }: { id: string }) => {
         <div className="flex flex-col leading-none">
           <div className="flex items-center text-sm font-bold">
             <p>#</p>
-            <p>{invoice?.id}</p>
+            <p>
+              {invoice.id.slice(0, 5)}...{invoice.id.slice(20)}
+            </p>
           </div>
           <p className="text-sm text-detail">{invoice?.description}</p>
         </div>
@@ -26,7 +36,7 @@ const InvoiceDetailsBody = ({ id }: { id: string }) => {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-10 items-center justify-between leading-none">
         <div className="flex flex-col gap-4">
           <p className="text-xs text-detail">Invoice Date</p>
-          <p className="text-sm font-bold">{invoice?.createdAt}</p>
+          <p className="text-sm font-bold">{formatDate(invoice?.createdAt)}</p>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -41,7 +51,7 @@ const InvoiceDetailsBody = ({ id }: { id: string }) => {
 
         <div className="flex flex-col gap-4">
           <p className="text-xs text-detail">Payment Due</p>
-          <p className="text-sm font-bold">{invoice?.paymentDue}</p>
+          <p className="text-sm font-bold">{formatDate(invoice?.createdAt)}</p>
         </div>
 
         <div className="flex flex-col gap-4">

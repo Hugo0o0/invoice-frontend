@@ -1,13 +1,13 @@
-import useInvoices from "./useInvoices";
+import { getInvoice } from "@/api/invoiceApi";
+import { useQuery } from "@tanstack/react-query";
 
 const useInvoice = (id: string) => {
-  const invoices = useInvoices();
+  const { data, isLoading } = useQuery({
+    queryKey: ["invoice", id],
+    queryFn: getInvoice.bind(null, id),
+  });
 
-  const invoice = invoices.find((invoice) => invoice.id === id);
-
-  return {
-    invoice,
-  };
+  return { data, isLoading };
 };
 
 export default useInvoice;

@@ -1,7 +1,8 @@
-import { loginApi, signupApi } from "@/api/api";
+import { loginApi, signupApi } from "@/api/authApi";
 import { LoginUser, SignupUser, User } from "@/utils/@types/types";
 import { saveItemToLocalStorage, tryCatch } from "@/utils/utils";
 import { createContext, useEffect, useRef, useState } from "react";
+import { useJwt } from "react-jwt";
 import { toast } from "react-toastify";
 
 interface AuthContextProps {
@@ -11,14 +12,12 @@ interface AuthContextProps {
   signup: (user: SignupUser) => void;
 }
 
-const saveUser = (dispatch: React.Dispatch<any>, data: any) => {
-  const localUser = {
-    name: data.data.name,
-    email: data.data.email,
-    token: data.data.token.jwt,
-  };
-  dispatch(localUser);
-  saveItemToLocalStorage("user", localUser);
+const saveUser = (
+  dispatch: React.Dispatch<React.SetStateAction<User | null>>,
+  data: User
+) => {
+  dispatch(data);
+  saveItemToLocalStorage("user", data);
 };
 
 const setAbortController = (
@@ -40,18 +39,19 @@ export const authContext = createContext<AuthContextProps>({
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const abortController = useRef<AbortController>();
+  const { isExpired } = useJwt(user?.token.jwt || "");
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
+    const savedUser = localStorage.getItem("user");
+    if (savedUser && !isExpired) {
+      setUser(JSON.parse(savedUser));
     }
   }, []);
 
   const login = tryCatch(async (user: LoginUser) => {
     setAbortController(abortController);
     const { data } = await loginApi(user, abortController.current?.signal!);
-    saveUser(setUser, data);
+    saveUser(setUser, data.data);
     toast.success("Login Success");
   });
 
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signup = tryCatch(async (user: SignupUser) => {
     setAbortController(abortController);
     const { data } = await signupApi(user, abortController.current?.signal!);
-    saveUser(setUser, data);
+    saveUser(setUser, data.data);
     toast.success("Signup Success");
   });
 

@@ -1,16 +1,18 @@
-import useInvoice from "@/utils/hooks/useInvoices";
 import { Heading } from "../UI";
 import NewInvoiceButton from "../NewInvoiceButton/NewInvoiceButton";
 import FilterInvoiceDropdown from "../FilterInvoiceDropdown/FilterInvoiceDropdown";
+import useInvoices from "@/utils/hooks/useInvoices";
 
 const HomeInvoiceActions = () => {
-  const invoices = useInvoice();
+  const { data } = useInvoices();
+  const invoiceLength = data?.data.data.length;
   return (
     <div className="flex items-center justify-between">
       <div>
         <Heading size="md">Invoices</Heading>
         <p className="text-regent-gray">
-          There are total {invoices.length} invoices.
+          There are total {invoiceLength}{" "}
+          {invoiceLength === 1 ? "invoice" : "invoices"}.
         </p>
       </div>
 
