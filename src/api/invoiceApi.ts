@@ -2,11 +2,11 @@ import { AxiosResponse } from "axios";
 import { api } from "./api";
 import { Invoice } from "@/utils/@types/types";
 
-export const getInvoices = async (): Promise<
-  AxiosResponse<{ data: Invoice[] }>
-> => {
+export const getInvoices = async (
+  status: any
+): Promise<AxiosResponse<{ data: Invoice[] }>> => {
   const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
-  return await api.get("invoices", {
+  return await api.get(`invoices?status=${status}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

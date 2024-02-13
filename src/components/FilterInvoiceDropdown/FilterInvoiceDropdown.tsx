@@ -1,8 +1,8 @@
 import { Listbox } from "@headlessui/react";
 import { ArrowDown } from "../UI";
 import capitalize from "lodash.capitalize";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const status = [
   {
@@ -20,8 +20,14 @@ const status = [
 ];
 
 const FilterInvoiceDropdown = () => {
-  const [filter, setFilter] = useState<string[]>(["draft", "pending", "paid"]);
-  const navigate = useNavigate();
+  const [filter, setFilter] = useState<string[]>([]);
+  const [, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (filter.length > 0) {
+      setSearchParams({ status: filter.join(",") });
+    }
+  }, [filter]);
 
   return (
     <Listbox as={"div"} className="relative">
@@ -50,7 +56,13 @@ const FilterInvoiceDropdown = () => {
               checked={filter.includes(item.name)}
               value={item.name}
               onChange={(e) => {
-                navigate(`/?status=${item.name}`);
+                if (e.target.checked) {
+                  setFilter((prev) => [...prev, e.target.value]);
+                } else {
+                  setFilter((prev) =>
+                    prev.filter((item) => item !== e.target.value)
+                  );
+                }
               }}
             />
             <label className="text-sm font-bold" htmlFor="draft">

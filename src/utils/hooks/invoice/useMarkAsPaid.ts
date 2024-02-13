@@ -1,11 +1,9 @@
 import { markAsPaid } from "@/api/invoiceApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const useMarkAsPaid = (id: string) => {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   return useMutation({
     mutationFn: markAsPaid.bind(null, id),
     mutationKey: ["invoice", id!],
