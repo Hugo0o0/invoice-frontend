@@ -1,7 +1,7 @@
 import { Heading } from "../UI";
 import NewInvoiceButton from "../NewInvoiceButton/NewInvoiceButton";
 import FilterInvoiceDropdown from "../FilterInvoiceDropdown/FilterInvoiceDropdown";
-import useInvoices from "@/utils/hooks/useInvoices";
+import useInvoices from "@/utils/hooks/invoice/useInvoices";
 
 const HomeInvoiceActions = () => {
   const { data } = useInvoices();

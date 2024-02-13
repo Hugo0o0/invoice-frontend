@@ -23,3 +23,29 @@ export const getInvoice = async (
     },
   });
 };
+
+export const markAsPaid = async (
+  id: string
+): Promise<AxiosResponse<{ data: Invoice }>> => {
+  const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
+  return await api.put(
+    `invoices/${id}`,
+    { status: "paid" },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const deleteInvoice = async (
+  id: string
+): Promise<AxiosResponse<{ data: Invoice }>> => {
+  const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
+  return await api.delete(`invoices/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

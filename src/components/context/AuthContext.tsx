@@ -45,6 +45,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const savedUser = localStorage.getItem("user");
     if (savedUser && !isExpired) {
       setUser(JSON.parse(savedUser));
+    } else {
+      setUser(null);
     }
   }, []);
 

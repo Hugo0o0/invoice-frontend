@@ -2,6 +2,7 @@ import { Listbox } from "@headlessui/react";
 import { ArrowDown } from "../UI";
 import capitalize from "lodash.capitalize";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const status = [
   {
@@ -20,6 +21,7 @@ const status = [
 
 const FilterInvoiceDropdown = () => {
   const [filter, setFilter] = useState<string[]>(["draft", "pending", "paid"]);
+  const navigate = useNavigate();
 
   return (
     <Listbox as={"div"} className="relative">
@@ -47,6 +49,9 @@ const FilterInvoiceDropdown = () => {
               name={item.name}
               checked={filter.includes(item.name)}
               value={item.name}
+              onChange={(e) => {
+                navigate(`/?status=${item.name}`);
+              }}
             />
             <label className="text-sm font-bold" htmlFor="draft">
               {capitalize(item.name)}

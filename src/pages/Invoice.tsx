@@ -3,7 +3,7 @@ import InvoiceDetailsActions from "@/components/InvoiceDetailsActions/InvoiceDet
 import InvoiceDetailsBody from "@/components/InvoiceDetailsBody/InvoiceDetailsBody";
 import NoInvoice from "@/components/NoInvoice/NoInvoice";
 import { Skeleton } from "@/components/UI";
-import useInvoice from "@/utils/hooks/useInvoice";
+import useInvoice from "@/utils/hooks/invoice/useInvoice";
 import { useParams } from "react-router-dom";
 
 const Invoice = () => {
