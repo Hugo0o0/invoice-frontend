@@ -16,9 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ReactQueryDevtools initialIsOpen={false} />
       <Theme>
         <AuthProvider>
-          <ModalContext>
-            <App />
-          </ModalContext>
+          <App />
         </AuthProvider>
       </Theme>
     </QueryClientProvider>

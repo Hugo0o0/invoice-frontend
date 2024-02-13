@@ -6,8 +6,14 @@ const context = createContext({
   close: () => {},
 });
 
-const ModalContext = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const ModalContext = ({
+  children,
+  isModalOpen,
+}: {
+  children: React.ReactNode;
+  isModalOpen: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(isModalOpen);
 
   const open = () => {
     setIsOpen(true);

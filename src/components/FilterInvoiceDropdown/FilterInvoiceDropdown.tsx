@@ -3,8 +3,14 @@ import { ArrowDown } from "../UI";
 import capitalize from "lodash.capitalize";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { set } from "date-fns";
 
-const status = [
+type StatusType = "paid" | "pending" | "draft";
+
+const status: {
+  id: number;
+  name: StatusType;
+}[] = [
   {
     id: 1,
     name: "draft",
@@ -20,14 +26,28 @@ const status = [
 ];
 
 const FilterInvoiceDropdown = () => {
-  const [filter, setFilter] = useState<string[]>([]);
+  const [filters, setFilters] = useState<StatusType[] | null>(null);
   const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if (filter.length > 0) {
-      setSearchParams({ status: filter.join(",") });
+    const statusSearchParams = filters?.join(",");
+    if (statusSearchParams) setSearchParams({ status: statusSearchParams });
+    else setSearchParams({});
+  }, [filters]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value as StatusType;
+    if (!filters) setFilters([value]);
+    else if (e.target.checked) {
+      setFilters((prev) => [...(prev as StatusType[]), value]);
+    } else {
+      setFilters((prev) => {
+        const filtered = prev!.filter((item) => item !== value);
+        if (filtered.length === 0) return null;
+        return filtered;
+      });
     }
-  }, [filter]);
+  };
 
   return (
     <Listbox as={"div"} className="relative">
@@ -53,17 +73,9 @@ const FilterInvoiceDropdown = () => {
               type="checkbox"
               id={item.name}
               name={item.name}
-              checked={filter.includes(item.name)}
               value={item.name}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setFilter((prev) => [...prev, e.target.value]);
-                } else {
-                  setFilter((prev) =>
-                    prev.filter((item) => item !== e.target.value)
-                  );
-                }
-              }}
+              checked={filters ? filters.includes(item.name) : false}
+              onChange={handleInputChange}
             />
             <label className="text-sm font-bold" htmlFor="draft">
               {capitalize(item.name)}

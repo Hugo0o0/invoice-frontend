@@ -2,10 +2,8 @@ import HomeInvoiceActions from "@/components/HomeInvoiceActions/HomeInvoiceActio
 import InvoiceCard from "@/components/InvoiceCard/InvoiceCard";
 import NoInvoice from "@/components/NoInvoice/NoInvoice";
 import useInvoices from "@/utils/hooks/invoice/useInvoices";
-import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
-  const [searchParams] = useSearchParams();
   const { data, isLoading } = useInvoices();
   return (
     <div className="flex flex-col gap-20">

@@ -3,13 +3,15 @@ import { api } from "./api";
 import { Invoice } from "@/utils/@types/types";
 
 export const getInvoices = async (
-  status: any
+  status: string | null
 ): Promise<AxiosResponse<{ data: Invoice[] }>> => {
   const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
-  return await api.get(`invoices?status=${status}`, {
+  const params = status ? { status } : {};
+  return await api.get("invoices", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    params,
   });
 };
 

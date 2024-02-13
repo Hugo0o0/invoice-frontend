@@ -10,10 +10,10 @@ const Fade = ({
 }) => {
   return (
     <Transition
-      enter="transition duration-500 ease-out"
+      enter="transition duration-200 ease-out"
       enterFrom="opacity-0"
       enterTo="opacity-100"
-      leave="transition duration-500 ease-out"
+      leave="transition duration-200 ease-out"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
       show={show}

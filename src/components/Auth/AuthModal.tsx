@@ -10,7 +10,7 @@ const AuthModal = () => {
   const authType = type === "login" ? <Login /> : <Signup />;
 
   return (
-    <Modal closeOnOverlayClick={false} isOpen={true}>
+    <Modal isOpen={true}>
       <Modal.Content>
         <div className="flex items-center gap-4 text-detail  py-10 px-10 justify-center">
           <p className="text-md font-bold">Login</p>
