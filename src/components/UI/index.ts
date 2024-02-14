@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import {
   ArrowDown,
   Logo,
-  Calendar,
+  Calendar as CalendarIcon,
   Moon,
   Sun,
   Plus,
@@ -15,6 +15,7 @@ import { FormInput } from "./FormInput";
 import { Slide, Fade } from "./Animations";
 import Switch from "./Switch/Switch";
 import Skeleton from "./Skeleton/Skeleton";
+import Calendar from "./Calendar/Calendar";
 export {
   Text,
   Heading,
@@ -22,7 +23,7 @@ export {
   FormInput,
   ArrowDown,
   Slide,
-  Calendar,
+  CalendarIcon,
   Logo,
   Sun,
   Moon,
@@ -33,4 +34,5 @@ export {
   Skeleton,
   Fade,
   IllustrationEmpty,
+  Calendar,
 };

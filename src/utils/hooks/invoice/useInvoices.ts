@@ -5,8 +5,6 @@ import { useSearchParams } from "react-router-dom";
 const useInvoices = () => {
   const [searchParams] = useSearchParams();
   const statusSearchParams = searchParams.get("status");
-  console.log(statusSearchParams);
-
   const { data, isLoading } = useQuery({
     queryKey: ["invoices", { status: statusSearchParams }],
     queryFn: getInvoices.bind(null, statusSearchParams),
