@@ -7,6 +7,7 @@ import Plus from "./Plus";
 import ArrowRight from "./ArrowRight";
 import ArrowLeft from "./ArrowLeft";
 import IllustrationEmpty from "./IllustrationEmpty";
+import Trash from "./Trash";
 
 export {
   ArrowDown,
@@ -18,4 +19,5 @@ export {
   ArrowRight,
   ArrowLeft,
   IllustrationEmpty,
+  Trash,
 };

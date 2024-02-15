@@ -13,7 +13,7 @@ const InvoiceDetailsBody = ({
   if (loading) return <Skeleton />;
 
   return (
-    <div className="bg-item py-20 px-16 flex flex-col gap-5 shadow-default w-full rounded-[8px] ">
+    <div className="bg-item md:mb-0 mb-14 py-20 px-16 flex flex-col gap-5 shadow-default w-full rounded-[8px] ">
       <div className="flex justify-between md:flex-row flex-col gap-7">
         <div className="flex flex-col leading-none">
           <div className="flex items-center text-sm font-bold">

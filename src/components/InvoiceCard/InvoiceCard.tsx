@@ -27,7 +27,7 @@ const InvoiceCard = ({
         <div className="flex items-center gap-1">
           <p className="text-regent-gray  leading-none">Due</p>
           <p className="text-xs text-wild-blue leading-none">
-            {formatDate(invoice.createdAt)}
+            {formatDate(invoice.paymentDue)}
           </p>
         </div>
         <p className="text-[#858BB2]">{invoice.clientName}</p>

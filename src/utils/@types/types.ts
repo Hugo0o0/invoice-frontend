@@ -2,8 +2,8 @@ export interface Icon extends React.SVGAttributes<SVGElement> {}
 
 export interface Invoice {
   id: string;
-  createdAt: string;
-  paymentDue: string;
+  createdAt: Date;
+  paymentDue: Date;
   description: string;
   paymentTerms: number;
   clientName: string;

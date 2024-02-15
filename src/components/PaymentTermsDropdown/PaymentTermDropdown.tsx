@@ -9,16 +9,16 @@ const options = [
   { id: 4, value: "Net 30 days" },
 ];
 
-const PaymentTermDropdown = () => {
-  const [selectedPerson, setSelectedPerson] = useState(options[0]);
+const PaymentTermDropdown = ({ option }: { option: number }) => {
+  const [selectedPerson, setSelectedPerson] = useState(options[option]);
   return (
     <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-      <Listbox.Button className="border mb-10 w-full flex items-center justify-between text-sm font-bold border-input focus:border-input-focus rounded-[4px] px-5 py-4">
+      <Listbox.Button className="border w-full flex items-center justify-between text-sm font-bold border-input focus:border-input-focus rounded-[4px] px-5 py-4">
         <p>{selectedPerson.value}</p>
         <ArrowDown />
       </Listbox.Button>
       <Slide>
-        <Listbox.Options className="bg-item rounded-[4px] top-5 cursor-pointer text-sm font-bold ">
+        <Listbox.Options className="bg-item rounded-[4px] top-0 cursor-pointer text-sm font-bold ">
           {options.map((person) => (
             <Listbox.Option
               key={person.id}

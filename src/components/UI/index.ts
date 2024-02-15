@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ArrowLeft,
   IllustrationEmpty,
+  Trash,
 } from "./Icons";
 import { FormInput } from "./FormInput";
 import { Slide, Fade } from "./Animations";
@@ -35,4 +36,5 @@ export {
   Fade,
   IllustrationEmpty,
   Calendar,
+  Trash,
 };

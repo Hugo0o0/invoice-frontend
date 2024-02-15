@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, CalendarIcon, Fade } from "..";
-import { addMonths, format, getDaysInMonth, setDay, setMonth } from "date-fns";
+import {
+  addMonths,
+  format,
+  getDaysInMonth,
+  setDate as dateFnsSetDate,
+  getDate,
+} from "date-fns";
 
-const Calendar = ({ d }: { d?: Date }) => {
+interface CalendarProps {
+  initalDate: Date;
+  onDateChange: (date: Date) => void;
+}
+
+const Calendar: FC<CalendarProps> = ({ initalDate, onDateChange }) => {
   const [showCalendar, setShowCalendar] = useState(false);
-  const [date, setDate] = useState(new Date("2003-01-06T00:00:00Z"));
-  const daysInMonth = getDaysInMonth(date);
-  const day = date.getDate();
+  const [date, setDate] = useState(initalDate ?? new Date());
+
+  const { daysInMonth } = useMemo(() => {
+    if (date) {
+      const daysInMonth = getDaysInMonth(date);
+      return { daysInMonth };
+    }
+    return { daysInMonth: 1 };
+  }, [date]);
 
   return (
     <div className="relative">
       <div
         onClick={setShowCalendar.bind(null, (prev) => !prev)}
-        className="rounded-[4px] bg-item flex items-center justify-between border border-input hover:border-input-focus px-5 py-5 cursor-pointer"
+        className="rounded-[4px] bg-item flex items-center justify-between border border-input hover:border-input-focus px-5 py-4 cursor-pointer"
       >
         <p className="text-sm font-bold">{format(date, "dd MMMM yyyy")}</p>
         <CalendarIcon />
@@ -39,22 +56,21 @@ const Calendar = ({ d }: { d?: Date }) => {
           </div>
 
           <div className="grid grid-cols-7 justify-items-center gap-4">
-            {Array.from({ length: daysInMonth }).map((_, index) => {
-              console.log(index);
-              return (
-                <p
-                  onClick={() => {
-                    const result = setDay(date, index + 1);
-                    setDate(result);
-                  }}
-                  className={`text-sm font-bold cursor-pointer ${
-                    day - 1 === index && "text-primary"
-                  }`}
-                >
-                  {index + 1}
-                </p>
-              );
-            })}
+            {Array.from({ length: daysInMonth }).map((_, index) => (
+              <p
+                onClick={() => {
+                  const result = dateFnsSetDate(date, index + 1);
+                  setDate(result);
+                  setShowCalendar(false);
+                  onDateChange(result);
+                }}
+                className={`text-sm font-bold cursor-pointer ${
+                  getDate(date) - 1 === index && "text-primary"
+                }`}
+              >
+                {index + 1}
+              </p>
+            ))}
           </div>
         </div>
       </Fade>

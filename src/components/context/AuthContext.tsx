@@ -43,6 +43,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
+    console.log(isExpired);
+
     if (savedUser && !isExpired) {
       setUser(JSON.parse(savedUser));
     } else {

@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        items: "21.4rem 4.6rem 10rem 10rem auto",
+      },
       colors: {
         primary: "hsl(var(--color-primary) / <alpha-value>)",
         secondary: "hsl(var(--color-secondary) / <alpha-value>)",
