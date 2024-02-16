@@ -1,9 +1,8 @@
 import { loginApi, signupApi } from "@/api/authApi";
 import { LoginUser, SignupUser, User } from "@/utils/@types/types";
 import { parseJwt, saveItemToLocalStorage, tryCatch } from "@/utils/utils";
-import { isBefore, set } from "date-fns";
+import { isBefore } from "date-fns";
 import { createContext, useEffect, useRef, useState } from "react";
-import { useJwt } from "react-jwt";
 import { toast } from "react-toastify";
 
 interface AuthContextProps {

@@ -3,7 +3,6 @@ import { ArrowDown } from "../UI";
 import capitalize from "lodash.capitalize";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { set } from "date-fns";
 
 type StatusType = "paid" | "pending" | "draft";
 

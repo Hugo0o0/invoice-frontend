@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Modal from "../UI/Modal/Modal";
 import { Button, Heading } from "../UI";
 import useDeleteInvoice from "@/utils/hooks/invoice/useDeleteInvoice";

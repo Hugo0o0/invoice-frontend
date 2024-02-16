@@ -5,7 +5,6 @@ import AuthModal from "./components/Auth/AuthModal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "./utils/hooks/useAuth";
-import LogoutButton from "./components/LogoutButton/LogoutButton";
 
 const App = () => {
   const { user } = useAuth();
