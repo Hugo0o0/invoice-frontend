@@ -12,14 +12,21 @@ import BillTo from "./BillTo";
 import ItemLists from "./ItemLists";
 import InvoiceFormActions from "./InvoiceFormActions";
 import initialValues from "./initialValues";
-import useInvoice from "@/utils/hooks/invoice/useInvoice";
 import useAddInvoice from "@/utils/hooks/invoice/useAddInvoice";
-import { useState } from "react";
-const InvoiceForm = () => {
+import { sanitize } from "@/utils/sanitize";
+import useUpdateInvoice from "@/utils/hooks/invoice/useUpdateInvoice";
+import { UseMutateAsyncFunction } from "@tanstack/react-query";
+import { SetStateAction } from "react";
+const InvoiceForm = ({
+  isOpen,
+  data,
+  close,
+}: {
+  isOpen: boolean;
+  data?: Invoice;
+  close: React.Dispatch<SetStateAction<boolean>>;
+}) => {
   const params = useParams();
-  const [isOpen, setIsOpen] = useState(true);
-  // const invoice = useInvoice(params.id!);
-
   const {
     values,
     handleChange,
@@ -27,15 +34,33 @@ const InvoiceForm = () => {
     errors,
     handleBlur,
     setFieldValue,
+    submitForm,
   } = useFormik<Invoice>({
-    initialValues: initialValues,
+    initialValues: sanitize(data || initialValues),
     onSubmit: async () => {
       await mutateAsync();
-      setIsOpen(false);
+      close(false);
     },
     validationSchema: invoiceSchema,
   });
-  const { mutateAsync } = useAddInvoice(values);
+
+  let mutateAsync: UseMutateAsyncFunction<
+    unknown,
+    Error,
+    void,
+    string | number
+  >;
+
+  if (data) {
+    const { mutateAsync: updateMutateAsync } = useUpdateInvoice(
+      values,
+      params.id!
+    );
+    mutateAsync = updateMutateAsync;
+  } else {
+    const { mutateAsync: addMutateAsync } = useAddInvoice(values);
+    mutateAsync = addMutateAsync;
+  }
 
   return (
     <Modal isOpen={isOpen}>
@@ -100,7 +125,11 @@ const InvoiceForm = () => {
             errors={errors.items as (FormikErrors<InvoiceItem> | undefined)[]}
           />
 
-          <InvoiceFormActions closeModal={setIsOpen} invoice={values} />
+          <InvoiceFormActions
+            setFieldValue={setFieldValue}
+            submit={submitForm}
+            closeModal={close}
+          />
         </form>
       </ModalContent>
     </Modal>

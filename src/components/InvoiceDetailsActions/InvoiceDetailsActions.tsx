@@ -4,8 +4,12 @@ import { Button } from "../UI";
 import useInvoice from "@/utils/hooks/invoice/useInvoice";
 import useMarkAsPaid from "@/utils/hooks/invoice/useMarkAsPaid";
 import DeleteInvoiceModal from "../DeleteInvoiceModal/DeleteInvoiceModal";
-import { useState } from "react";
-const InvoiceDetailsActions = () => {
+import React, { SetStateAction, useState } from "react";
+const InvoiceDetailsActions = ({
+  openForm,
+}: {
+  openForm: React.Dispatch<SetStateAction<boolean>>;
+}) => {
   const { id } = useParams();
   const { data } = useInvoice(id!);
   const { mutate } = useMarkAsPaid(id!);
@@ -23,7 +27,9 @@ const InvoiceDetailsActions = () => {
         <InvoiceStatus status={data?.data.data.status!} />
       </div>
       <div className="flex md:static md:w-auto bottom-0 md:py-0 py-5  md:bg-transparent bg-item left-0 justify-center items-center fixed w-full items-center gap-6">
-        <Button variant="secondary">Edit</Button>
+        <Button onClick={openForm.bind(null, true)} variant="secondary">
+          Edit
+        </Button>
         <Button variant="danger" onClick={() => setDeleteModal(true)}>
           Delete
         </Button>

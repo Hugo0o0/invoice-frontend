@@ -58,6 +58,7 @@ const Calendar: FC<CalendarProps> = ({ initalDate, onDateChange }) => {
           <div className="grid grid-cols-7 justify-items-center gap-4">
             {Array.from({ length: daysInMonth }).map((_, index) => (
               <p
+                key={Math.random() * index}
                 onClick={() => {
                   const result = dateFnsSetDate(date, index + 1);
                   setDate(result);

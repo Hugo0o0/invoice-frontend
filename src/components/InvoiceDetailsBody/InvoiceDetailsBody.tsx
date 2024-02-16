@@ -2,6 +2,7 @@ import InvoiceItems from "../InvoiceItems/InvoiceItems";
 import { Invoice } from "@/utils/@types/types";
 import { formatDate } from "@/utils/utils";
 import { Skeleton } from "../UI";
+import { cutText } from "@/utils/cutText";
 
 const InvoiceDetailsBody = ({
   invoice,
@@ -18,9 +19,7 @@ const InvoiceDetailsBody = ({
         <div className="flex flex-col leading-none">
           <div className="flex items-center text-sm font-bold">
             <p>#</p>
-            <p>
-              {invoice.id.slice(0, 5)}...{invoice.id.slice(20)}
-            </p>
+            <p>{cutText(invoice.id, 5)}</p>
           </div>
           <p className="text-sm text-detail">{invoice?.description}</p>
         </div>
@@ -36,7 +35,9 @@ const InvoiceDetailsBody = ({
       <div className="grid grid-cols-2 md:grid-cols-3 gap-10 items-center justify-between leading-none">
         <div className="flex flex-col gap-4">
           <p className="text-xs text-detail">Invoice Date</p>
-          <p className="text-sm font-bold">{formatDate(invoice?.createdAt)}</p>
+          <p className="text-sm font-bold">
+            {formatDate(invoice?.createdAt || new Date())}
+          </p>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -51,7 +52,7 @@ const InvoiceDetailsBody = ({
 
         <div className="flex flex-col gap-4">
           <p className="text-xs text-detail">Payment Due</p>
-          <p className="text-sm font-bold">{formatDate(invoice?.createdAt)}</p>
+          <p className="text-sm font-bold">{formatDate(invoice?.paymentDue)}</p>
         </div>
 
         <div className="flex flex-col gap-4">

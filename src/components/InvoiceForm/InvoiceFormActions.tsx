@@ -1,31 +1,37 @@
 import { useParams } from "react-router-dom";
 import { Button } from "../UI";
-import useAddInvoice from "@/utils/hooks/invoice/useAddInvoice";
-import { Invoice } from "@/utils/@types/types";
 import { SetStateAction } from "react";
 
 const InvoiceFormActions = ({
-  invoice,
   closeModal,
+  submit,
+  setFieldValue,
 }: {
-  invoice: Invoice;
   closeModal: React.Dispatch<SetStateAction<boolean>>;
+  submit: () => Promise<any>;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }) => {
-  const { mutate } = useAddInvoice(invoice);
-
-  const handleSave = () => {
-    mutate();
-  };
-
   const params = useParams();
   return (
     <div className="flex gap-5 justify-between w-full md:justify-end items-center">
-      <div className="md:flex-1">
-        <Button variant="secondary" onClick={closeModal.bind(null, false)}>
-          Discard
-        </Button>
-      </div>
-      <Button variant={params.id ? "secondary" : "dark"}>
+      {!params.id && (
+        <div className="md:flex-1">
+          <Button variant="secondary" onClick={closeModal.bind(null, false)}>
+            Discard
+          </Button>
+        </div>
+      )}
+      <Button
+        variant={params.id ? "secondary" : "dark"}
+        onClick={
+          params.id
+            ? closeModal.bind(null, false)
+            : () => {
+                setFieldValue("status", "draft");
+                submit();
+              }
+        }
+      >
         {params.id ? "Cancel" : "Save as Draft"}
       </Button>
       <Button type="submit">

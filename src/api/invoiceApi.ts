@@ -62,3 +62,15 @@ export const addInvoice = async (
     },
   });
 };
+
+export const updateInvoice = async (
+  invoice: Invoice,
+  id: string
+): Promise<AxiosResponse<{ data: Invoice }>> => {
+  const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
+  return await api.put(`invoices/${id}`, invoice, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

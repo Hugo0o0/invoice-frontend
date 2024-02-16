@@ -3,9 +3,14 @@ import NewInvoiceButton from "../NewInvoiceButton/NewInvoiceButton";
 import FilterInvoiceDropdown from "../FilterInvoiceDropdown/FilterInvoiceDropdown";
 import useInvoices from "@/utils/hooks/invoice/useInvoices";
 
-const HomeInvoiceActions = () => {
+const HomeInvoiceActions = ({
+  openForm,
+}: {
+  openForm: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { data } = useInvoices();
   const invoiceLength = data?.data.data.length;
+
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -18,7 +23,7 @@ const HomeInvoiceActions = () => {
 
       <div className="flex items-center gap-14">
         <FilterInvoiceDropdown />
-        <NewInvoiceButton />
+        <NewInvoiceButton onClick={openForm.bind(null, true)} />
       </div>
     </div>
   );

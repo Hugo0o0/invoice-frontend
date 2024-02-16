@@ -46,7 +46,7 @@ const Signup = () => {
         onChange={handleChange}
       />
 
-      <Button>Signup</Button>
+      <Button type="submit">Signup</Button>
     </form>
   );
 };

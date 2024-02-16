@@ -32,11 +32,32 @@ const ItemLists: FC<ItemListsProps> = ({
     }
   };
 
+  const handleQuantityChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    handleChange(e);
+    const total = values ? +e.target.value * +values[index].price : 0;
+    setItems(`items[${index}].total`, total);
+  };
+
+  const handlePriceChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    handleChange(e);
+    const total = values ? +e.target.value * +values[index].quantity : 0;
+    setItems(`items[${index}].total`, total);
+  };
+
   return (
     <>
       {values &&
         values.map((item, index) => (
-          <div className="grid grid-cols-4 grid-rows-2 md:grid-rows-none md:grid-cols-items  mt-5 items-center justify-between gap-5">
+          <div
+            key={Math.random() * index}
+            className="grid grid-cols-4 grid-rows-2 md:grid-rows-none md:grid-cols-items  mt-5 items-center justify-between gap-5"
+          >
             <InputGroup
               label="Item Name"
               value={item.name}
@@ -51,14 +72,21 @@ const ItemLists: FC<ItemListsProps> = ({
               inputClassName="!px-2"
               name={`items[${index}].quantity`}
               onBlur={handleBlur}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleQuantityChange(e, index);
+              }}
+              value={item.quantity}
+              type="number"
               errorMessage={errors?.[index]?.quantity}
             />
             <InputGroup
               label="Price"
               onBlur={handleBlur}
               name={`items[${index}].price`}
-              onChange={handleChange}
+              onChange={(e) => {
+                handlePriceChange(e, index);
+              }}
+              type="number"
               value={+item.price}
               errorMessage={errors?.[index]?.price}
             />
@@ -67,7 +95,7 @@ const ItemLists: FC<ItemListsProps> = ({
               onBlur={handleBlur}
               name={`items[${index}].total`}
               onChange={handleChange}
-              defaultValue={item.total}
+              value={item.total}
               errorMessage={errors?.[index]?.total}
               readOnly
               inputClassName="border-none"

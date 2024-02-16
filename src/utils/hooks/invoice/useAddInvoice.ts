@@ -1,6 +1,7 @@
 import { addInvoice } from "@/api/invoiceApi";
 import { Invoice } from "@/utils/@types/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,19 +12,26 @@ const useAddInvoice = (data: Invoice) => {
   return useMutation({
     mutationFn: addInvoice.bind(null, data),
     mutationKey: ["invoice", { status: statusSearchParams }],
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.dismiss();
-      queryClient.setQueryData(
-        ["invoice", { status: statusSearchParams }],
-        data
-      );
+      queryClient.refetchQueries({
+        queryKey: ["invoices", { status: statusSearchParams }],
+      });
       toast.success("Added New Invoice");
     },
-    onError: (error) => {
+    onError: (error: AxiosError<any>) => {
       toast.dismiss();
-      toast.error(error.message);
+      if (error.code === "ERR_BAD_REQUEST") {
+        handleBadRequest(error.response?.data.errors);
+      }
     },
     onMutate: () => toast.loading("Adding new invoice..."),
+  });
+};
+
+const handleBadRequest = (error: any) => {
+  Object.keys(error).forEach((key) => {
+    toast.error(`${key}: ${error[key]}`, { autoClose: 10000 });
   });
 };
 

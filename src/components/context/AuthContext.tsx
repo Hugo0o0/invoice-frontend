@@ -1,6 +1,7 @@
 import { loginApi, signupApi } from "@/api/authApi";
 import { LoginUser, SignupUser, User } from "@/utils/@types/types";
-import { saveItemToLocalStorage, tryCatch } from "@/utils/utils";
+import { parseJwt, saveItemToLocalStorage, tryCatch } from "@/utils/utils";
+import { isBefore, set } from "date-fns";
 import { createContext, useEffect, useRef, useState } from "react";
 import { useJwt } from "react-jwt";
 import { toast } from "react-toastify";
@@ -39,14 +40,20 @@ export const authContext = createContext<AuthContextProps>({
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const abortController = useRef<AbortController>();
-  const { isExpired } = useJwt(user?.token.jwt || "");
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
-    console.log(isExpired);
+    if (savedUser) {
+      const parsedUser = JSON.parse(savedUser);
+      const decodedToken = parseJwt(parsedUser.token.jwt);
 
-    if (savedUser && !isExpired) {
-      setUser(JSON.parse(savedUser));
+      const isExpired = isBefore(new Date(decodedToken.exp * 1000), new Date());
+      if (isExpired) {
+        localStorage.removeItem("user");
+        setUser(null);
+        return;
+      }
+      setUser(parsedUser);
     } else {
       setUser(null);
     }

@@ -3,6 +3,7 @@ import InvoiceStatus from "../InvoiceStatus/InvoiceStatus";
 import { ArrowRight, Skeleton } from "../UI";
 import { Link } from "react-router-dom";
 import { formatDate } from "@/utils/utils";
+import { cutText } from "@/utils/cutText";
 
 const InvoiceCard = ({
   invoice,
@@ -20,9 +21,7 @@ const InvoiceCard = ({
       <div className="flex items-center flex-col md:flex-row gap-[4rem]">
         <div className="flex items-center font-bold">
           <p className="text-wild-blue">#</p>
-          <p>
-            {invoice.id.slice(0, 5)}...{invoice.id.slice(20)}
-          </p>
+          <p>{cutText(invoice.id, 10)}</p>
         </div>
         <div className="flex items-center gap-1">
           <p className="text-regent-gray  leading-none">Due</p>
@@ -33,7 +32,9 @@ const InvoiceCard = ({
         <p className="text-[#858BB2]">{invoice.clientName}</p>
       </div>
       <div className="flex items-center flex-col md:flex-row gap-[4rem]">
-        <p className="font-bold">£{invoice.total}</p>
+        <p className="font-bold">
+          £{invoice.items.reduce((acc, item) => acc + item.total, 0)}
+        </p>
         <InvoiceStatus status={invoice.status} />
         <ArrowRight className="hidden md:block" />
       </div>

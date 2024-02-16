@@ -4,13 +4,13 @@ import ModalContent from "./ModalContent/ModalContent";
 
 const Modal = ({
   children,
-  isOpen,
+  isOpen: isOpenProp,
 }: {
   children?: React.ReactNode;
   isOpen: boolean;
 }) => {
   return createPortal(
-    <Fade show={isOpen}>
+    <Fade show={isOpenProp}>
       <div className="fixed top-0 z-50 left-0 w-full h-full bg-modal flex items-center justify-center">
         {children}
       </div>
