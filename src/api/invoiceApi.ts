@@ -51,3 +51,14 @@ export const deleteInvoice = async (
     },
   });
 };
+
+export const addInvoice = async (
+  invoice: Invoice
+): Promise<AxiosResponse<{ data: Invoice }>> => {
+  const token = JSON.parse(localStorage.getItem("user") || "{}").token.jwt;
+  return await api.post("invoices", invoice, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

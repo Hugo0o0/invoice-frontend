@@ -14,10 +14,17 @@ const InputGroup: FC<FormInputProps> = ({
 }) => {
   return (
     <div className={`flex flex-col gap-5 ${props.className}`}>
-      <label className="text-xs text-wild-blue" htmlFor={label}>
+      <label
+        className={`text-sm text-wild-blue ${errorMessage && "!text-danger"}`}
+        htmlFor={label}
+      >
         {label}
       </label>
-      <FormInput {...props} className={inputClassName} id={label} />
+      <FormInput
+        {...props}
+        className={`${errorMessage && "!border-danger"} ${inputClassName}`}
+        id={label}
+      />
 
       <label className="text-danger">{errorMessage}</label>
     </div>

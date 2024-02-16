@@ -1,26 +1,18 @@
+import { FormikErrors } from "formik";
+
 export interface Icon extends React.SVGAttributes<SVGElement> {}
 
 export interface Invoice {
-  id: string;
-  createdAt: Date;
+  id?: string;
+  createdAt?: Date;
   paymentDue: Date;
   description: string;
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
   status: "pending" | "paid" | "draft";
-  senderAddress: {
-    street: string;
-    city: string;
-    postCode: string;
-    country: string;
-  };
-  clientAddress: {
-    street: string;
-    city: string;
-    postCode: string;
-    country: string;
-  };
+  senderAddress: InvoiceAddress;
+  clientAddress: InvoiceAddress;
   items: InvoiceItem[];
   total: number;
 }
@@ -30,6 +22,13 @@ export interface InvoiceItem {
   quantity: number;
   price: number;
   total: number;
+}
+
+export interface InvoiceAddress {
+  street: string;
+  city: string;
+  postCode: string;
+  country: string;
 }
 
 export interface LoginUser {
@@ -54,4 +53,11 @@ export interface SignupUser {
 export interface AuthApiReturnType {
   status: "success" | "error" | "fail";
   data: User;
+}
+
+export interface InvoiceFormProps<T> {
+  values: T;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  errors?: FormikErrors<T>;
 }

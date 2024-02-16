@@ -34,6 +34,9 @@ export default {
         lg: "-0.75px",
         md: "-0.25px",
       },
+      borderColor: {
+        danger: "hsl(var(--color-danger) / <alpha-value>)",
+      },
 
       lineHeight: {
         xl: "3.3rem",

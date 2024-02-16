@@ -38,7 +38,7 @@ const Login = () => {
         name="password"
         value={userInfo.password}
       />
-      <Button>Login</Button>
+      <Button type="submit">Login</Button>
     </form>
   );
 };

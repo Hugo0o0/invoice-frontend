@@ -1,5 +1,5 @@
 import { Listbox } from "@headlessui/react";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { ArrowDown, Slide } from "../UI";
 
 const options = [
@@ -9,10 +9,27 @@ const options = [
   { id: 4, value: "Net 30 days" },
 ];
 
-const PaymentTermDropdown = ({ option }: { option: number }) => {
-  const [selectedPerson, setSelectedPerson] = useState(options[option]);
+interface PaymentTermDropdownProps {
+  option?: number;
+  onSelect?: (value: number) => void;
+}
+
+const PaymentTermDropdown: FC<PaymentTermDropdownProps> = ({
+  option,
+  onSelect,
+}) => {
+  const defaultOption = options.find((opt) => opt.id === option);
+  const [selectedPerson, setSelectedPerson] = useState(
+    defaultOption || options[0]
+  );
   return (
-    <Listbox value={selectedPerson} onChange={setSelectedPerson}>
+    <Listbox
+      value={selectedPerson}
+      onChange={(val) => {
+        setSelectedPerson(val);
+        onSelect && onSelect(val.id);
+      }}
+    >
       <Listbox.Button className="border w-full flex items-center justify-between text-sm font-bold border-input focus:border-input-focus rounded-[4px] px-5 py-4">
         <p>{selectedPerson.value}</p>
         <ArrowDown />
